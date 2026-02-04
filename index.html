@@ -12,23 +12,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    /* CSS Variables for Themes */
+    /* Theme Variables */
     :root {
-      /* SUMMER: lush green base */
-      --bg-color: #e8f5e9;        /* soft sage green */
-      --text-color: #2e1f12;       /* deep brown */
-      --accent-color: #5d4037;     /* rich brown */
-      --divider-color: #8d6e63;    /* warm taupe */
-      --card-bg: #dcedc8;          /* light leafy green */
+      --bg-color: #e8f5e9;        /* Summer green */
+      --text-color: #2e1f12;
+      --accent-color: #5d4037;
+      --divider-color: #8d6e63;
+      --card-bg: #dcedc8;
+      --hero-image: url('https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); /* Lush summer lawn */
     }
 
     .winter-theme {
-      /* WINTER: crisp icy palette */
-      --bg-color: #f0f8ff;         /* alice blue */
-      --text-color: #1a3c5e;       /* deep navy */
-      --accent-color: #2c5282;     /* strong blue */
-      --divider-color: #4a90e2;    /* sky blue */
-      --card-bg: #e6f0fa;          /* pale ice */
+      --bg-color: #f0f8ff;        /* Icy blue-white */
+      --text-color: #1a3c5e;
+      --accent-color: #2c5282;
+      --divider-color: #4a90e2;
+      --card-bg: #e6f0fa;
+      --hero-image: url('https://www.josephfiler.com/images/600/Canada-Rockies-3613-Edit-Edit.jpg');
     }
 
     /* Base Styles */
@@ -51,10 +51,12 @@
       color: var(--text-color);
     }
 
-    /* Hero */
+    /* Hero Section */
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                  url('https://img1.wsimg.com/isteam/getty/1469760592') center/cover no-repeat;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--hero-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       height: 70vh;
       display: flex;
       align-items: center;
@@ -68,7 +70,7 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
-    /* Toggle Buttons */
+    /* Season Toggle */
     .season-toggle {
       text-align: center;
       margin: 2rem auto;
@@ -86,11 +88,7 @@
       border-radius: 4px;
       transition: all 0.2s;
     }
-    .toggle-btn:hover {
-      background: var(--accent-color);
-      color: white;
-    }
-    .toggle-btn.active {
+    .toggle-btn:hover, .toggle-btn.active {
       background: var(--accent-color);
       color: white;
     }
@@ -224,7 +222,6 @@
       background: #000;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .hero h1 {
         font-size: clamp(1.75rem, 10vw, 2.75rem);
@@ -254,7 +251,7 @@
   <div id="summer-content" class="section">
     <div class="section-title"><h2>Summer Services</h2></div>
     <div class="photo-grid">
-      <div class="photo-card placeholder">Lush lawns, garden design, irrigation</div>
+      <div class="photo-card placeholder">Lawn care, irrigation, garden design</div>
       <div class="photo-card placeholder">Add summer photo</div>
       <div class="photo-card placeholder">Add summer photo</div>
     </div>
@@ -264,7 +261,7 @@
   <div id="winter-content" class="section" style="display:none;">
     <div class="section-title"><h2>Winter Services</h2></div>
     <div class="photo-grid">
-      <div class="photo-card placeholder">Snow removal, ice management, winter prep</div>
+      <div class="photo-card placeholder">Snow removal, ice management, salting</div>
       <div class="photo-card placeholder">Add winter photo</div>
       <div class="photo-card placeholder">Add winter photo</div>
     </div>
