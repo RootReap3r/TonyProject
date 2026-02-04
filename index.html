@@ -12,6 +12,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      /* Default = Summer */
+      --bg-color: #f8f3eb;
+      --text-color: #3b2f24;
+      --accent-color: #5d4037;
+      --divider-color: #8d6e63;
+      --card-bg: #e8e0d5;
+    }
+
+    .winter-theme {
+      --bg-color: #f0f8ff;
+      --text-color: #1a3c5e;
+      --accent-color: #2c5282;
+      --divider-color: #4a90e2;
+      --card-bg: #e6f0fa;
+    }
+
     /* Reset & Base */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -21,20 +38,22 @@
     body {
       font-family: 'Source Sans Pro', sans-serif;
       line-height: 1.6;
-      color: #222;
-      background-color: #fff;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      transition: background-color 0.4s ease, color 0.4s ease;
       overflow-x: hidden;
     }
     h1, h2, h3, h4 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
+      color: var(--text-color);
     }
 
     /* Hero Section */
     .hero {
       background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                   url('https://img1.wsimg.com/isteam/getty/1469760592') center/cover no-repeat;
-      height: 80vh;
+      height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -42,69 +61,67 @@
       padding: 0 1rem;
     }
     .hero h1 {
-      font-size: clamp(2rem, 8vw, 4rem);
+      font-size: clamp(2rem, 8vw, 3.5rem);
       color: white;
       text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
-    /* Shared Section Styles */
+    /* Season Toggle */
+    .season-toggle {
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+    .toggle-btn {
+      background: #eee;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin: 0 0.5rem;
+      border-radius: 4px;
+      color: #333;
+    }
+    .toggle-btn.active {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    /* Sections */
     .section {
-      padding: 4rem 1.5rem;
+      padding: 2rem 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
     }
     .section-title {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       position: relative;
     }
     .section-title h2 {
-      font-size: 2.25rem;
-      color: #1a1a1a;
+      font-size: 2rem;
     }
     .section-title::after {
       content: '';
       display: block;
       width: 60px;
       height: 3px;
-      background: #aaa;
+      background: var(--divider-color);
       margin: 0.75rem auto;
     }
 
-    /* Summer Section – Warm Tones */
-    .summer {
-      background-color: #f8f3eb; /* Soft warm off-white */
-      color: #3b2f24; /* Rich brown */
-    }
-    .summer .section-title h2 {
-      color: #5d4037; /* Deeper brown */
-    }
-    .summer .section-title::after {
-      background: #8d6e63; /* Warm taupe */
-    }
-
-    /* Winter Section – Cool Tones */
-    .winter {
-      background-color: #f0f8ff; /* Alice blue / light icy */
-      color: #1a3c5e; /* Deep winter blue */
-    }
-    .winter .section-title h2 {
-      color: #2c5282;
-    }
-    .winter .section-title::after {
-      background: #4a90e2; /* Bright sky blue */
-    }
-
-    /* Photo Grids */
+    /* Photo Grid */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
     .photo-card {
       aspect-ratio: 4/3;
-      background-color: #ddd;
+      background-color: var(--card-bg);
       border-radius: 8px;
       overflow: hidden;
       position: relative;
@@ -123,19 +140,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #888;
+      color: var(--text-color);
       font-style: italic;
       font-size: 0.9rem;
+      opacity: 0.7;
     }
 
     /* Contact Form */
     .contact {
       background: #0f0f0f;
       color: #f0f0f0;
+      margin-top: 3rem;
     }
     .contact .section-title h2,
-    .contact label,
-    .contact p {
+    .contact label {
       color: #f0f0f0;
     }
     .contact .section-title::after {
@@ -201,53 +219,54 @@
       background: #000;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .hero h1 {
-        font-size: clamp(1.75rem, 10vw, 3rem);
+        font-size: clamp(1.75rem, 10vw, 2.75rem);
       }
-      .section {
-        padding: 2.5rem 1rem;
+      .toggle-btn {
+        display: block;
+        width: 80%;
+        margin: 0.5rem auto;
       }
     }
   </style>
 </head>
-<body>
+<body class="summer-theme">
 
   <!-- Hero Banner -->
   <header class="hero">
     <h1>Your Landscaping... Is Our Forte.</h1>
   </header>
 
-  <!-- Summer Services -->
-  <section class="section summer">
-    <div class="section-title">
-      <h2>Summer Services</h2>
-    </div>
+  <!-- Season Toggle Buttons -->
+  <div class="season-toggle">
+    <button class="toggle-btn active" onclick="setSeason('summer')">Summer Services</button>
+    <button class="toggle-btn" onclick="setSeason('winter')">Winter Services</button>
+  </div>
+
+  <!-- Summer Content -->
+  <div id="summer-content" class="section">
+    <div class="section-title"><h2>Summer Services</h2></div>
     <div class="photo-grid">
       <div class="photo-card placeholder">Lush lawns, garden design, irrigation</div>
       <div class="photo-card placeholder">Add summer photo</div>
       <div class="photo-card placeholder">Add summer photo</div>
     </div>
-  </section>
+  </div>
 
-  <!-- Winter Services -->
-  <section class="section winter">
-    <div class="section-title">
-      <h2>Winter Services</h2>
-    </div>
+  <!-- Winter Content -->
+  <div id="winter-content" class="section" style="display:none;">
+    <div class="section-title"><h2>Winter Services</h2></div>
     <div class="photo-grid">
       <div class="photo-card placeholder">Snow removal, ice management, winter prep</div>
       <div class="photo-card placeholder">Add winter photo</div>
       <div class="photo-card placeholder">Add winter photo</div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contact Form -->
+  <!-- Contact Form (always visible) -->
   <section class="section contact">
-    <div class="section-title">
-      <h2>Contact Us</h2>
-    </div>
+    <div class="section-title"><h2>Contact Us</h2></div>
     <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <div class="form-group">
         <label for="name">Name</label>
@@ -269,10 +288,32 @@
     </form>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>Copyright © 2025 Forte Landscapes – All Rights Reserved.</p>
   </footer>
 
+  <script>
+    function setSeason(season) {
+      const body = document.body;
+      const summerBtn = document.querySelector('.toggle-btn:nth-child(1)');
+      const winterBtn = document.querySelector('.toggle-btn:nth-child(2)');
+      const summerContent = document.getElementById('summer-content');
+      const winterContent = document.getElementById('winter-content');
+
+      if (season === 'winter') {
+        body.className = 'winter-theme';
+        summerBtn.classList.remove('active');
+        winterBtn.classList.add('active');
+        summerContent.style.display = 'none';
+        winterContent.style.display = 'block';
+      } else {
+        body.className = 'summer-theme';
+        summerBtn.classList.add('active');
+        winterBtn.classList.remove('active');
+        summerContent.style.display = 'block';
+        winterContent.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 </html>
